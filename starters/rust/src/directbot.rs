@@ -1,21 +1,26 @@
 use serde::Deserialize;
-use std::collections::HashMap;
+// use std::collections::HashMap;
 
 #[derive(Debug, Deserialize)]
 pub struct Response {
-	directions: Vec<Direction>
+    pub directions: Vec<Direction>,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct Direction {
-	coordinates: HashMap<String, Coordinate>,
-	direction: String,
-	distance: usize,
-	speed: usize,
+    pub coordinates: Option<LinePos>,
+    pub direction: String,
+    pub distance: u8,
+    pub speed: u8,
+}
+#[derive(Debug, Deserialize)]
+pub struct LinePos {
+    pub a: Pos,
+    pub b: Pos,
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Coordinate {
-	x: isize,
-	y: isize,
+pub struct Pos {
+    pub x: f64,
+    pub y: f64,
 }
